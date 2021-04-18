@@ -30,6 +30,6 @@ deploy:
   bucket_name: elasticbeanstalk-us-east-2-849087879460
   bucket_path: fib-multiplos-container-aws-travis
   on:
-    branch: master
+    branch: main
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
