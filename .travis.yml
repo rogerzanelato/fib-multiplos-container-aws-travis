@@ -9,8 +9,15 @@ before_install:
 script:
   - docker run -e CI=true rogerzanelato/fib-multiplos-container-client npm test -- --coverage
 
-# after_success:
-#   - docker build -t rogerzanelato/fib-multiplos-container-client ./client
-#   - docker build -t rogerzanelato/fib-multiplos-container-nginx ./nginx
-#   - docker build -t rogerzanelato/fib-multiplos-container-server ./server
-#   - docker build -t rogerzanelato/fib-multiplos-container-worker ./worker
+after_success:
+  - docker build -t rogerzanelato/fib-multiplos-container-client ./client
+  - docker build -t rogerzanelato/fib-multiplos-container-nginx ./nginx
+  - docker build -t rogerzanelato/fib-multiplos-container-server ./server
+  - docker build -t rogerzanelato/fib-multiplos-container-worker ./worker
+  # Login docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Publicar imagens no docker hub
+  - docker push rogerzanelato/fib-multiplos-container-client
+  - docker push rogerzanelato/fib-multiplos-container-nginx
+  - docker push rogerzanelato/fib-multiplos-container-server
+  - docker push rogerzanelato/fib-multiplos-container-worker
