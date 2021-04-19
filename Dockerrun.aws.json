@@ -27,7 +27,7 @@
             "image": "rogerzanelato/fib-multiplos-container-nginx:latest",
             "hostname": "nginx",
             "essential": true,
-            "portsMappings": [
+            "portMappings": [
                 {
                     "hostPort": 80,
                     "containerPort": 80
